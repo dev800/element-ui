@@ -12,7 +12,7 @@
         <ul
           role="menubar"
           key={ +this.collapse }
-          style={{ style }}
+          style={{ this.style }}
           class={{
             'el-menu--horizontal': this.mode === 'horizontal',
             'el-menu--collapse': this.collapse,
