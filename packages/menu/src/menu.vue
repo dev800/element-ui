@@ -12,7 +12,7 @@
         <ul
           role="menubar"
           key={ +this.collapse }
-          style={{ backgroundColor: this.backgroundColor || '' }}
+          style={{ style }}
           class={{
             'el-menu--horizontal': this.mode === 'horizontal',
             'el-menu--collapse': this.collapse,
@@ -131,6 +131,15 @@
       };
     },
     computed: {
+      style() {
+        let styles = [];
+
+        if (this.backgroundColor) {
+          styles.push(`background-color: ${this.backgroundColor}`)
+        }
+
+        return styles.join('; ');
+      },
       hoverBackground() {
         return this.backgroundColor ? this.mixColor(this.backgroundColor, 0.2) : '';
       },
@@ -272,7 +281,7 @@
           this.routeToItem(item, (error) => {
             this.activeIndex = oldActiveIndex;
             if (error) {
-              // vue-router 3.1.0+ push/replace cause NavigationDuplicated error 
+              // vue-router 3.1.0+ push/replace cause NavigationDuplicated error
               // https://github.com/ElemeFE/element/issues/17044
               if (error.name === 'NavigationDuplicated') return
               console.error(error)
